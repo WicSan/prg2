@@ -26,7 +26,7 @@ public final class AddressBook {
      * @param familyName Nachname.
      * @return true wenn eingefügt.
      */
-    public boolean insertEntry(final String givenName, final String familyName) {
+    public boolean insertEntry(final String givenName, final String familyName) throws IllegalArgumentException {
         final AddressEntry entry = new AddressEntry(givenName, familyName);
         return this.addresses.add(entry);
     }
@@ -66,5 +66,13 @@ public final class AddressBook {
      */
     public int getEntryCount() {
         return this.addresses.size();
+    }
+    
+    public void sort(){
+        addresses.sort(null);
+    }
+    
+    public void print(){
+        this.addresses.forEach(a -> System.out.println(a.toString()));
     }
 }

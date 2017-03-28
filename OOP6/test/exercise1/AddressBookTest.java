@@ -52,21 +52,6 @@ public class AddressBookTest {
             fail("Failed to insert entry.");
         }
     }
-    
-        @Test
-    public void testInsertEntry_String() {
-        try {
-            System.out.println("insertEntry");
-            String givenName = "test";
-            String familyName = "test2";
-            AddressBook instance = new AddressBook();
-            boolean expResult = true;
-            boolean result = instance.insertEntry(givenName, familyName);
-            assertEquals(expResult, result);
-        } catch (IllegalArgumentException e) {
-            fail("Failed to insert entry.");
-        }
-    }
 
     @Test
     public void testRemoveEntry() {
@@ -123,5 +108,18 @@ public class AddressBookTest {
         int expResult = 0;
         int result = instance.getEntryCount();
         assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testSort(){
+        System.out.println("sort");
+        AddressBook instance = new AddressBook();
+        instance.insertEntry("hallo", "du");
+        instance.insertEntry("mann", "meier");
+        instance.insertEntry("mann", "müller");
+        instance.insertEntry("albert", "lolo");
+        
+        instance.sort();
+        instance.print();
     }
 }

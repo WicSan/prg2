@@ -1,6 +1,5 @@
 package exercise1;
 
-import exercise1.AddressEntry;
 import java.util.Optional;
 
 /**
@@ -14,22 +13,32 @@ public final class DemoAddressBookClient {
      * Privater Konstruktor.
      */
     private DemoAddressBookClient() {
-
         final AddressEntry muster = new AddressEntry("Hans", "Muster");
-        muster.setZipCode("6048");
-        muster.setResidence("Horw");
-        muster.setPhoneNumber("+41413391111");
-        muster.setEmailAddress("Hans.Muster@info.com");
-        System.out.println(muster);
-        this.addressBook.insertEntry(muster);
+        
+        try {           
+            muster.setZipCode("6048");
+            muster.setResidence("Horw");
+            muster.setPhoneNumber("+41413391111");
+            muster.setEmailAddress("Hans.Muster@info.com");
+            System.out.println(muster);
+            this.addressBook.insertEntry(muster);
+        } catch(Exception e){
+            System.out.println(e.toString());
+        }
 
         final AddressEntry demo = new AddressEntry("Heiri", "Demo");
-        demo.setZipCode("1234");
-        demo.setResidence("Weissnidwo");
-        demo.setPhoneNumber("+1111");
-        demo.setEmailAddress("dont@reply.com");
-        System.out.println(demo);
-        this.addressBook.insertEntry(demo);
+            
+        try {
+            demo.setZipCode("1234");
+            demo.setResidence("Weissnidwo");
+            demo.setPhoneNumber("+1111");
+            demo.setEmailAddress("dont@reply.com");
+            System.out.println(demo);
+            this.addressBook.insertEntry(demo);
+            this.addressBook.insertEntry(muster);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
 
         System.out.println("Addressbuch hat " + this.addressBook.getEntryCount() + " Einträge.");
 
@@ -39,9 +48,16 @@ public final class DemoAddressBookClient {
         } else {
             System.out.println("Eintrag nicht gefunden.");
         }
+        
+        addressBook.sort();
+        addressBook.print();
 
-        this.addressBook.removeEntry(muster);
-        System.out.println("Addressbuch hat " + this.addressBook.getEntryCount() + " Einträge.");
+        try {
+            this.addressBook.removeEntry(muster);
+            System.out.println("Addressbuch hat " + this.addressBook.getEntryCount() + " Einträge.");
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     /**

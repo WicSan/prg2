@@ -56,7 +56,7 @@ public class AddressEntryTest {
             String zipCode = "12345";
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setZipCode(zipCode);
-            fail("Fail wrong zipcode setted.");
+            fail("Fail wrong zipcode set.");
         } catch (IllegalArgumentException e) {
         }
     }
@@ -80,7 +80,7 @@ public class AddressEntryTest {
             String residence = "ree231";
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setResidence(residence);
-            fail("Fail wrong residence setted.");
+            fail("Fail wrong residence set.");
         } catch (IllegalArgumentException e) {
         }
     }
@@ -104,7 +104,7 @@ public class AddressEntryTest {
             String phoneNumber = "0627584a13223";
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setPhoneNumber(phoneNumber);
-            fail("Fail wrong phoneNumber setted.");
+            fail("Fail wrong phoneNumber set.");
         } catch (IllegalArgumentException e) {
         }
     }
@@ -116,7 +116,7 @@ public class AddressEntryTest {
             String eMailAdresse = "mail@mail.ch";
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setEmailAddress(eMailAdresse);
-        } catch (IllegalArgumentException e) {
+        } catch (InvalidEmailAddressException e) {
             fail("Fail set email.");
         }
     }
@@ -125,11 +125,11 @@ public class AddressEntryTest {
     public void testSetEmailAddress_Wrong() {
         try {
             System.out.println("setEmailAddress");
-            String eMailAdresse = "mail@mail@k.ch";
+            String eMailAdresse = "mail@mail@.ch";
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setEmailAddress(eMailAdresse);
-            fail("Fail wrong email setted.");
-        } catch (IllegalArgumentException e) {
+            fail("Fail wrong email set.");
+        } catch (InvalidEmailAddressException e) {
         }
     }
 
@@ -175,7 +175,7 @@ public class AddressEntryTest {
     public void testGetPhoneNumber() {
         System.out.println("getPhoneNumber");
         AddressEntry instance = new AddressEntry("test", "test");
-        String expResult = "0765630080";
+        String expResult = "0627584132";
         instance.setPhoneNumber(expResult);
         String result = instance.getPhoneNumber();
         assertEquals(expResult, result);
@@ -189,7 +189,6 @@ public class AddressEntryTest {
         instance.setEmailAddress(expResult);
         String result = instance.getEmailAddress();
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
 
     @Test
@@ -200,7 +199,7 @@ public class AddressEntryTest {
             String givenName = "saurisd234";
             String familyName = "io22323pql";
             AddressEntry instance = new AddressEntry(givenName, familyName);
-            fail("Fail wrong names setted.");
+            fail("Fail wrong names set.");
         } catch (IllegalArgumentException e) {
         }
     }
@@ -208,22 +207,10 @@ public class AddressEntryTest {
     @Test
     public void testEquals() {
         System.out.println("equals");
-        Object other = null;
-        AddressEntry instance = null;
-        boolean expResult = false;
+        AddressEntry instance = new AddressEntry("test", "test");
+        AddressEntry other = new AddressEntry("test", "test");
+        boolean expResult = true;
         boolean result = instance.equals(other);
         assertEquals(expResult, result);
-        fail("The test case is a prototype.");
     }
-
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        AddressEntry instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
 }
