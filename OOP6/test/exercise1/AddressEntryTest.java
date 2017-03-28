@@ -11,12 +11,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.rules.ExpectedException;
 
 /**
  *
  * @author sandr
  */
 public class AddressEntryTest {
+    
+    public ExpectedException thrown = ExpectedException.none();
 
     public AddressEntryTest() {
     }
@@ -39,26 +42,22 @@ public class AddressEntryTest {
 
     @Test
     public void testSetZipCode() {
-        try {
-            System.out.println("setZipCode");
-            String zipCode = "1234";
-            AddressEntry instance = new AddressEntry("test", "tset");
-            instance.setZipCode(zipCode);
-        } catch (IllegalArgumentException e) {
-            fail("Fail set zipcode.");
-        }
+        System.out.println("setZipCode");
+
+        String zipCode = "1234";
+        AddressEntry instance = new AddressEntry("test", "tset");
+        instance.setZipCode(zipCode);
     }
 
     @Test
     public void testSetZipCode_Wrong() {
-        try {
-            System.out.println("setZipCode");
-            String zipCode = "12345";
-            AddressEntry instance = new AddressEntry("test", "tset");
-            instance.setZipCode(zipCode);
-            fail("Fail wrong zipcode set.");
-        } catch (IllegalArgumentException e) {
-        }
+        System.out.println("setZipCode");
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("");
+        String zipCode = "12345";
+        AddressEntry instance = new AddressEntry("test", "tset");
+        instance.setZipCode(zipCode);
+        thrown.reportMissingExceptionWithMessage("No exception");
     }
 
     @Test
@@ -199,6 +198,7 @@ public class AddressEntryTest {
             String givenName = "saurisd234";
             String familyName = "io22323pql";
             AddressEntry instance = new AddressEntry(givenName, familyName);
+            System.out.println(instance.toString());
             fail("Fail wrong names set.");
         } catch (IllegalArgumentException e) {
         }
@@ -209,8 +209,7 @@ public class AddressEntryTest {
         System.out.println("equals");
         AddressEntry instance = new AddressEntry("test", "test");
         AddressEntry other = new AddressEntry("test", "test");
-        boolean expResult = true;
         boolean result = instance.equals(other);
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 }

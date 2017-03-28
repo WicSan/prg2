@@ -72,6 +72,10 @@ public final class AddressBook {
         addresses.sort(null);
     }
     
+    public void sortbyPhonenumber(){
+        //addresses.sort(new );
+    }
+    
     public void print(){
         this.addresses.forEach(a -> System.out.println(a.toString()));
     }

@@ -45,9 +45,8 @@ public class AddressBookTest {
             String givenName = "test";
             String familyName = "test2";
             AddressBook instance = new AddressBook();
-            boolean expResult = true;
             boolean result = instance.insertEntry(givenName, familyName);
-            assertEquals(expResult, result);
+            assertTrue(result);
         } catch (IllegalArgumentException e) {
             fail("Failed to insert entry.");
         }
@@ -59,9 +58,8 @@ public class AddressBookTest {
         AddressEntry address = new AddressEntry("test", "test");
         AddressBook instance = new AddressBook();
         instance.insertEntry(address);
-        boolean expResult = true;
         boolean result = instance.removeEntry(address);
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     @Test
@@ -70,9 +68,8 @@ public class AddressBookTest {
         String givenName = "test";
         String familyName = "test2";
         AddressBook instance = new AddressBook();
-        boolean expResult = false;
         Optional<AddressEntry> result = instance.findByName(givenName, familyName);
-        assertEquals(expResult, result.isPresent());
+        assertTrue(!result.isPresent());
     }
     
     @Test
@@ -82,10 +79,9 @@ public class AddressBookTest {
         String familyName = "test2";
         AddressEntry address = new AddressEntry(givenName, familyName);
         AddressBook instance = new AddressBook();
-        boolean expResult = true;
         instance.insertEntry(address);
         Optional<AddressEntry> result = instance.findByName(givenName, familyName);
-        assertEquals(expResult, result.isPresent());
+        assertTrue(result.isPresent());
     }
 
     @Test
