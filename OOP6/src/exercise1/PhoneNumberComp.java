@@ -15,7 +15,8 @@ public class PhoneNumberComp implements Comparator<AddressEntry> {
 
     @Override
     public int compare(AddressEntry o1, AddressEntry o2) {
-        
+        if(o1 == o2)
+            return 0;
         
         return o1.getPhoneNumber().compareTo(o2.getPhoneNumber());
     }

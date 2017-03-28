@@ -90,7 +90,7 @@ public class AddressEntryTest {
     public void testSetPhoneNumber() {
         try {
             System.out.println("setPhoneNumber");
-            String phoneNumber = "0627584132";
+            String phoneNumber = "0627559132";
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setPhoneNumber(phoneNumber);
         } catch (IllegalArgumentException e) {
