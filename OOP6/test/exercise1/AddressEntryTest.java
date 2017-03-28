@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 
 /**
@@ -18,7 +19,8 @@ import org.junit.rules.ExpectedException;
  * @author sandr
  */
 public class AddressEntryTest {
-    
+
+    @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     public AddressEntryTest() {
@@ -42,20 +44,22 @@ public class AddressEntryTest {
 
     @Test
     public void testSetZipCode() {
-        System.out.println("setZipCode");
-
-        String zipCode = "1234";
-        AddressEntry instance = new AddressEntry("test", "tset");
-        instance.setZipCode(zipCode);
+        try {
+            System.out.println("setZipCode");
+            String zipCode = "1234";
+            AddressEntry instance = new AddressEntry("test", "tset");
+            instance.setZipCode(zipCode);
+        } catch (IllegalArgumentException e) {
+            fail(e.toString());
+        }
     }
 
     @Test
     public void testSetZipCode_Wrong() {
         System.out.println("setZipCode");
-        thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("");
         String zipCode = "12345";
         AddressEntry instance = new AddressEntry("test", "tset");
+        thrown.expect(IllegalArgumentException.class);
         instance.setZipCode(zipCode);
         thrown.reportMissingExceptionWithMessage("No exception");
     }
@@ -68,20 +72,18 @@ public class AddressEntryTest {
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setResidence(residence);
         } catch (IllegalArgumentException e) {
-            fail("Fail set residence.");
+            fail(e.toString());
         }
     }
 
     @Test
     public void testSetResidence_Wrong() {
-        try {
-            System.out.println("setResidence");
-            String residence = "ree231";
-            AddressEntry instance = new AddressEntry("test", "tset");
-            instance.setResidence(residence);
-            fail("Fail wrong residence set.");
-        } catch (IllegalArgumentException e) {
-        }
+        System.out.println("setResidence");
+        String residence = "ree231";
+        AddressEntry instance = new AddressEntry("test", "tset");
+        thrown.expect(IllegalArgumentException.class);
+        instance.setResidence(residence);
+        thrown.reportMissingExceptionWithMessage("No exception");
     }
 
     @Test
@@ -92,20 +94,18 @@ public class AddressEntryTest {
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setPhoneNumber(phoneNumber);
         } catch (IllegalArgumentException e) {
-            fail("Fail set phoneNumber.");
+            fail(e.toString());
         }
     }
 
     @Test
     public void testSetPhoneNumber_Wrong() {
-        try {
-            System.out.println("setPhoneNumber");
-            String phoneNumber = "0627584a13223";
-            AddressEntry instance = new AddressEntry("test", "tset");
-            instance.setPhoneNumber(phoneNumber);
-            fail("Fail wrong phoneNumber set.");
-        } catch (IllegalArgumentException e) {
-        }
+        System.out.println("setPhoneNumber");
+        String phoneNumber = "0627584a13223";
+        AddressEntry instance = new AddressEntry("test", "tset");
+        thrown.expect(IllegalArgumentException.class);
+        instance.setPhoneNumber(phoneNumber);
+        thrown.reportMissingExceptionWithMessage("No exception");
     }
 
     @Test
@@ -116,20 +116,18 @@ public class AddressEntryTest {
             AddressEntry instance = new AddressEntry("test", "tset");
             instance.setEmailAddress(eMailAdresse);
         } catch (InvalidEmailAddressException e) {
-            fail("Fail set email.");
+            fail(e.toString());
         }
     }
 
     @Test
     public void testSetEmailAddress_Wrong() {
-        try {
-            System.out.println("setEmailAddress");
-            String eMailAdresse = "mail@mail@.ch";
-            AddressEntry instance = new AddressEntry("test", "tset");
-            instance.setEmailAddress(eMailAdresse);
-            fail("Fail wrong email set.");
-        } catch (InvalidEmailAddressException e) {
-        }
+        System.out.println("setEmailAddress");
+        String eMailAdresse = "mail@mail@.ch";
+        AddressEntry instance = new AddressEntry("test", "tset");
+        thrown.expect(InvalidEmailAddressException.class);
+        instance.setEmailAddress(eMailAdresse);
+        thrown.reportMissingExceptionWithMessage("No exception");
     }
 
     @Test
@@ -191,17 +189,14 @@ public class AddressEntryTest {
     }
 
     @Test
-    public void testToString() {
+    public void testsetName() {
         System.out.println("instance");
-        try {
-            System.out.println("setEmailAddress");
-            String givenName = "saurisd234";
-            String familyName = "io22323pql";
-            AddressEntry instance = new AddressEntry(givenName, familyName);
-            System.out.println(instance.toString());
-            fail("Fail wrong names set.");
-        } catch (IllegalArgumentException e) {
-        }
+        System.out.println("setEmailAddress");
+        String givenName = "saurisd234";
+        String familyName = "io22323pql";
+        thrown.expect(IllegalArgumentException.class);
+        new AddressEntry(givenName, familyName);
+        thrown.reportMissingExceptionWithMessage("No exception");
     }
 
     @Test

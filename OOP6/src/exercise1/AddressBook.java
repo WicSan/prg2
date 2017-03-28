@@ -3,6 +3,7 @@ package exercise1;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,6 +75,7 @@ public final class AddressBook {
     
     public void sortbyPhonenumber(){
         //addresses.sort(new );
+        Collections.sort(addresses, new PhoneNumberComp());
     }
     
     public void print(){

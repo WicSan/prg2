@@ -118,4 +118,17 @@ public class AddressBookTest {
         instance.sort();
         instance.print();
     }
+    
+    @Test
+    public void testSort_Phone(){
+        System.out.println("sort");
+        AddressBook instance = new AddressBook();
+        instance.insertEntry("hallo", "du");
+        instance.insertEntry("mann", "meier");
+        instance.insertEntry("mann", "müller");
+        instance.insertEntry("albert", "lolo");
+        
+        instance.sortbyPhonenumber();
+        instance.print();
+    }
 }
