@@ -77,12 +77,15 @@ public final class AddressBook {
     public void sortbyPhonenumber(){
         //addresses.sort(new PhoneNumberComp());
         
-        Collections.sort(addresses, (AddressEntry o1, AddressEntry o2) -> {
+        /*Collections.sort(addresses, (AddressEntry o1, AddressEntry o2) -> {
             if(o1 == o2)
                 return 0;
             
             return o1.getPhoneNumber().compareTo(o2.getPhoneNumber());
-        });
+        });*/
+        
+        //addresses.sort(Comparator.comparing(a -> a.getPhoneNumber()));
+        addresses.sort(Comparator.comparing(AddressEntry::getPhoneNumber));
     }
     
     public void print(){
