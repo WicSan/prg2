@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * A simple Cube with three side lengths.
  */
-public class Cube implements Comparable<Cube>, Shape {
+public class Cube implements Comparable<Shape>, Shape {
 
     private final int number;
     private final int a, b, c;
@@ -78,15 +78,15 @@ public class Cube implements Comparable<Cube>, Shape {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (obj instanceof Shape) {
             return false;
         }
         
-        return Objects.equals(this.getVolume(), ((Cube)obj).getVolume());
+        return Objects.equals(this.getVolume(), ((Shape)obj).getVolume());
     }
 
     @Override
-    public int compareTo(Cube o) {
+    public int compareTo(Shape o) {
         if(this == o)
             return 0;
         

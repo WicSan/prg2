@@ -19,9 +19,9 @@ import javax.swing.event.ChangeListener;
  */
 public final class SolidWorks extends JFrame{
 
-    private static final String FILE_NAME = "soliddata_cubes.txt";
+    private static final String FILE_NAME = "soliddata_mixed.txt";
 
-    private Cube[] solids;
+    private Shape[] solids;
 
     private final JButton bRead = new JButton("Read file '" + FILE_NAME + "'");
     private final JButton bSortv = new JButton("Sort on 'volume'");
