@@ -123,10 +123,19 @@ public class AddressBookTest {
     public void testSort_Phone(){
         System.out.println("sort");
         AddressBook instance = new AddressBook();
-        instance.insertEntry("hallo", "du");
-        instance.insertEntry("mann", "meier");
-        instance.insertEntry("mann", "müller");
-        instance.insertEntry("albert", "lolo");
+        AddressEntry address = new AddressEntry("hallo", "du");
+        address.setPhoneNumber("0762567894");
+        AddressEntry address2 = new AddressEntry("mann", "meier");
+        address2.setPhoneNumber("0762568094");
+        AddressEntry address3 = new AddressEntry("mann", "müller");
+        address3.setPhoneNumber("0795632336");
+        AddressEntry address4 = new AddressEntry("mann", "müller");
+        address4.setPhoneNumber("0827582368");
+        
+        instance.insertEntry(address);
+        instance.insertEntry(address2);
+        instance.insertEntry(address3);
+        instance.insertEntry(address4);
         
         instance.sortbyPhonenumber();
         instance.print();

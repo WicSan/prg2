@@ -3,7 +3,7 @@ package exercise1;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,8 +74,17 @@ public final class AddressBook {
     }
     
     public void sortbyPhonenumber(){
-        //addresses.sort(new );
-        Collections.sort(addresses, new PhoneNumberComp());
+        //addresses.sort(new PhoneNumberComp());
+        
+        /*Collections.sort(addresses, (AddressEntry o1, AddressEntry o2) -> {
+            if(o1 == o2)
+                return 0;
+            
+            return o1.getPhoneNumber().compareTo(o2.getPhoneNumber());
+        });*/
+        
+        //addresses.sort(Comparator.comparing(a -> a.getPhoneNumber()));
+        addresses.sort(Comparator.comparing(AddressEntry::getPhoneNumber));
     }
     
     public void print(){
