@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * A simple Cube with three side lengths.
  */
-public class Cube implements Comparable<Cube> {
+public class Cube implements Comparable<Cube>, Shape {
 
     private final int number;
     private final int a, b, c;
@@ -59,7 +59,6 @@ public class Cube implements Comparable<Cube> {
         
         value += "Volume: " + getVolume() + "\n";
         value += "Surface: " + getSurface() + "\n";
-        value += "------------------------\n";
         
         return value;
     }
@@ -67,9 +66,7 @@ public class Cube implements Comparable<Cube> {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + this.a;
-        hash = 89 * hash + this.b;
-        hash = 89 * hash + this.c;
+        hash = 89 * hash + this.getVolume();
         return hash;
     }
 

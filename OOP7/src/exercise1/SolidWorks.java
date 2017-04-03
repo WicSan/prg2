@@ -3,9 +3,7 @@ package exercise1;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -36,7 +34,7 @@ public final class SolidWorks extends JFrame{
      */
     public SolidWorks() {
         super("SolidWorks");
-        setSize(400, 400);
+        setSize(600, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         final JPanel topPanel = new JPanel();
@@ -51,22 +49,22 @@ public final class SolidWorks extends JFrame{
         bottomPanel.add(bSortd);
         add(bottomPanel, BorderLayout.SOUTH);
         
-        bRead.addChangeListener((ChangeEvent e) -> {
+        bRead.addActionListener((ActionEvent e) -> {
             solids = SolidFileIO.readSolids(FILE_NAME);
             doOutput();
         });
         
-        bSortv.addChangeListener((ChangeEvent e) -> {
+        bSortv.addActionListener((ActionEvent e) -> {
             Arrays.sort(solids);
             doOutput();
         });
         
-        bSorts.addChangeListener((ChangeEvent e) -> {
+        bSorts.addActionListener((ActionEvent e) -> {
             Arrays.sort(solids, new SurfaceComparator());
             doOutput();
         });
         
-        bSortd.addChangeListener((ChangeEvent e) -> {
+        bSortd.addActionListener((ActionEvent e) -> {
             Arrays.sort(solids, new MaxDimensionComparator());
             doOutput();
         });
@@ -81,8 +79,10 @@ public final class SolidWorks extends JFrame{
      */
     private void doOutput() {
         outputArea.setText("");
-        for (final Cube solid : solids) {
+        outputArea.append("------------------------\n");
+        for (final Shape solid : solids) {
             outputArea.append(solid.toString());
+            outputArea.append("------------------------\n");
         }
     }
 
