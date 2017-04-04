@@ -31,6 +31,7 @@ public class Circle implements Comparable<Circle>, Shape {
 
     @Override
     public int hashCode() {
+        //hash
         int hash = 5;
         hash = 53 * hash + this.getVolume();
         return hash;
