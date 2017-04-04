@@ -3,7 +3,6 @@ package exercise1;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -11,15 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  * SolidWorks GUI to read data from file and display them in different orders.
  */
 public final class SolidWorks extends JFrame{
 
-    private static final String FILE_NAME = "soliddata_mixed.txt";
+    private static final String FILE_NAME = "soliddata_cubes.txt";
 
     private Shape[] solids;
 
@@ -85,31 +82,7 @@ public final class SolidWorks extends JFrame{
             outputArea.append("------------------------\n");
         }
     }
-
-    /*
-     * (non-Javadoc)
-     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-     */
-    /*@Override
-    public void actionPerformed(final ActionEvent event) {
-        if (event.getSource() == bRead) {
-            solids = SolidFileIO.readSolids(FILE_NAME);
-            doOutput();
-        }
-        if ((event.getSource() == bSort1) && (solids != null)) {
-            // your turn
-            doOutput();
-        }
-        if ((event.getSource() == bSort2) && (solids != null)) {
-            // your turn
-            doOutput();
-        }
-        if ((event.getSource() == bSort3) && (solids != null)) {
-            // your turn
-            doOutput();
-        }
-    }*/
-
+    
     /**
      * main-Methode für Start.
      * @param args nicht verwendet.
