@@ -5,7 +5,6 @@
  */
 package exercise1;
 
-import java.util.Arrays;
 
 /**
  *
