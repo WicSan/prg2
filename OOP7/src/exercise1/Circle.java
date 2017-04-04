@@ -5,7 +5,6 @@
  */
 package exercise1;
 
-import java.util.Arrays;
 
 /**
  *
@@ -73,7 +72,6 @@ public class Circle implements Comparable<Circle>, Shape {
         value += "Durchmesser: " + d + "\n";
         value += "Volume: " + getVolume() + "\n";
         value += "Surface: " + getSurface() + "\n";
-        
         return value;
     }
 }
