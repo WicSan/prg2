@@ -11,9 +11,9 @@ import java.util.Comparator;
  *
  * @author sandr
  */
-public class SurfaceComparator implements Comparator<Shape> {
+public class SurfaceComparator implements Comparator<Cube> {
     @Override
-    public int compare(Shape o1, Shape o2) {
+    public int compare(Cube o1, Cube o2) {
         return Integer.compare(o1.getSurface(), o2.getSurface());
     }
 }

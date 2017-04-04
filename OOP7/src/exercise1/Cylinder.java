@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author sandr
  */
-public class Cylinder implements Comparable<Shape>, Shape {
+public class Cylinder implements Comparable<Cylinder>, Shape {
 
     private final int number;
     private final int d;
@@ -24,7 +24,7 @@ public class Cylinder implements Comparable<Shape>, Shape {
     }
 
     @Override
-    public int compareTo(Shape o) {
+    public int compareTo(Cylinder o) {
         if (this == o) {
             return 0;
         }
@@ -47,11 +47,11 @@ public class Cylinder implements Comparable<Shape>, Shape {
         if (obj == null) {
             return false;
         }
-        if (obj instanceof Shape) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
 
-        return Objects.equals(this.getVolume(), ((Shape) obj).getVolume());
+        return Objects.equals(this.getVolume(), ((Cylinder) obj).getVolume());
     }
 
     @Override

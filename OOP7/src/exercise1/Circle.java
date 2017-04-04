@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * @author sandr
  */
-public class Circle implements Comparable<Shape>, Shape {
+public class Circle implements Comparable<Circle>, Shape {
 
     private final int number;
     private final int d;
@@ -22,7 +22,7 @@ public class Circle implements Comparable<Shape>, Shape {
     }
 
     @Override
-    public int compareTo(Shape o) {
+    public int compareTo(Circle o) {
         if (this == o) {
             return 0;
         }
@@ -45,11 +45,11 @@ public class Circle implements Comparable<Shape>, Shape {
         if (obj == null) {
             return false;
         }
-        if (obj instanceof Shape) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
 
-        return this.getVolume() == ((Shape) obj).getVolume();
+        return this.getVolume() == ((Circle) obj).getVolume();
     }
 
     @Override

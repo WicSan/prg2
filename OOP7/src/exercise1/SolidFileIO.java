@@ -18,8 +18,8 @@ public final class SolidFileIO {
      * @param fileName Filename.
      * @return Array of Cubes.
      */
-    public static Shape[] readSolids(final String fileName) {
-        LinkedList<Shape> list = new LinkedList<>();
+    public static Cube[] readSolids(final String fileName) {
+        LinkedList<Cube> list = new LinkedList<>();
         
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))){
             // your turn!
@@ -35,15 +35,6 @@ public final class SolidFileIO {
                         int s3 = Integer.parseInt(tokens[4]);
                         list.add(new Cube(number, s1, s2, s3));
                         break;
-                    case "Y":
-                        int d = Integer.parseInt(tokens[2]);
-                        int h = Integer.parseInt(tokens[3]);
-                        list.add(new Cylinder(number, d, h));
-                        break;
-                    case "S":
-                        int d1 = Integer.parseInt(tokens[2]);
-                        list.add(new Circle(number, d1));
-                        break;
                     default:
                         break;
                 }
@@ -53,7 +44,7 @@ public final class SolidFileIO {
             Logger.getLogger(SolidFileIO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        return list.toArray(new Shape[0]);
+        return list.toArray(new Cube[0]);
     }
 
     /**
