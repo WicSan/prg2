@@ -69,9 +69,7 @@ public class Ball extends Thread{
             
             try {
                 Thread.sleep(20);
-            } catch (InterruptedException ex) {
-                
-            }
+            } catch (InterruptedException ex) { }
         }
         
         while(c.getTransparency() != Transparency.BITMASK){
@@ -79,9 +77,7 @@ public class Ball extends Thread{
             
             try {
                 Thread.sleep(20);
-            } catch (InterruptedException ex) {
-                
-            }
+            } catch (InterruptedException ex) { }
         }
     }
 }
