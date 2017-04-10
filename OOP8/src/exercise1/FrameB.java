@@ -1,11 +1,13 @@
 package exercise1;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,11 +20,12 @@ import javax.swing.JFrame;
  */
 public class FrameB extends JFrame {
     private PaintPanel p;
+    private final Timer timer;
 
     public FrameB() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 700);
-        
+         
         p = new PaintPanel();
         p.setDoubleBuffered(true);
         p.addMouseMotionListener(new MouseAdapter() {
@@ -42,14 +45,19 @@ public class FrameB extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                p.stop();
+                timer.stop();
                 super.windowClosing(e);
             }
         });
         
         add(p);
+        
+        timer = new Timer(15, (ActionEvent e) -> {
+            p.repaint();
+        });
+        timer.start();
+        
         setVisible(true);
-        p.start();
     }
 
     public static void main(final String[] args) {

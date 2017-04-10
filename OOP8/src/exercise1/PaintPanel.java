@@ -17,7 +17,6 @@ import javax.swing.JPanel;
  */
 public class PaintPanel extends JPanel{
     private final LinkedBlockingQueue<Ball> balls;
-    private boolean run;
     
     public PaintPanel(){
         balls = new LinkedBlockingQueue<>();
@@ -50,22 +49,5 @@ public class PaintPanel extends JPanel{
             b.start();
         } catch (InterruptedException ex) {
         }
-    }
-    
-    public void stop(){
-        run = false;
-    }
-    
-    public void start(){
-        run = true;
-        
-        new Thread(() -> {
-            try {
-                while(run){
-                    this.repaint();
-                    Thread.sleep(15);
-                }
-            } catch (InterruptedException ex) { }
-        }).start();
     }
 }
