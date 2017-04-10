@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -45,9 +47,11 @@ public class PaintPanel extends JPanel{
     public void createBall(Vector v){
         Ball b = new Ball(v, this);
         b.setPosition(new Vector(v.getX() - b.getRadius(), v.getY() - b.getRadius()));
-        balls.add(b);
-        
-        b.start();
+        try {
+            balls.put(b);
+            b.start();
+        } catch (InterruptedException ex) {
+        }
     }
     
     public void stop(){
