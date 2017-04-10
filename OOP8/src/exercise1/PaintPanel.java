@@ -7,7 +7,8 @@ package exercise1;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.concurrent.LinkedBlockingQueue;
 import javax.swing.JPanel;
 
 /**
@@ -15,10 +16,23 @@ import javax.swing.JPanel;
  * @author sandr
  */
 public class PaintPanel extends JPanel{
-    private final LinkedList<Ball> balls;
+    private final LinkedBlockingQueue<Ball> balls;
     
     public PaintPanel(){
-        balls = new LinkedList<>();
+        balls = new LinkedBlockingQueue<>();
+        
+        Thread t = new Thread(() -> {
+            while(true){
+                this.repaint();
+                
+                try {
+                    Thread.sleep(15);
+                } catch (InterruptedException ex) {
+
+                }
+            }
+        });
+        t.start();
     }
 
    @Override
@@ -26,19 +40,25 @@ public class PaintPanel extends JPanel{
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g;
         
-        for(Ball b : balls){
-            Vector v = b.getPosition();
-            g2D.setColor(b.getColor());
-            g2D.fillOval(v.getX(), v.getY(), b.getRadius(), b.getRadius());
+        Iterator<Ball> iterator = balls.iterator();
+        while(iterator.hasNext()){
+            Ball b = iterator.next();
+            
+            if(b.isAlive()){
+                Vector v = b.getPosition();
+                g2D.setColor(b.getColor());
+                g2D.fillOval(v.getX(), v.getY(), b.getRadius() * 2, b.getRadius() * 2);
+            } else {
+                balls.remove(b);
+            }
         }
     }
     
     public void createBall(Vector v){
-        Ball b = new Ball(v);
-        Thread t = new Thread(b);
-        t.start();
+        Ball b = new Ball(v, this);
+        b.setPosition(new Vector(v.getX() - b.getRadius(), v.getY() - b.getRadius()));
+        balls.add(b);
         
-        balls.add(new Ball(v));
-        repaint();
+        b.start();
     }
 }

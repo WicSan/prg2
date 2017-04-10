@@ -3,8 +3,6 @@ package exercise1;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /*
@@ -18,28 +16,28 @@ import javax.swing.JFrame;
  */
 public class FrameB extends JFrame {
     private PaintPanel p;
+    private boolean isPressed;
 
     public FrameB() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 700);
+        isPressed = false;
         
         p = new PaintPanel();
-        p.addMouseListener(new MouseAdapter() {
+        p.setDoubleBuffered(true);
+        p.addMouseMotionListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent evt) {
-                p.createBall(new Vector(evt.getX(), evt.getY()));
+            public void mouseDragged(MouseEvent e) {
+                p.createBall(new Vector(e.getX(), e.getY()));
             }
         });
         
-        Thread t = new Thread(() -> { 
-            p.repaint(); 
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(FrameB.class.getName()).log(Level.SEVERE, null, ex);
+        p.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                p.createBall(new Vector(e.getX(), e.getY()));
             }
         });
-        t.start();
         
         add(p);
         setVisible(true);

@@ -6,25 +6,28 @@
 package exercise1;
 
 import java.awt.Color;
+import java.awt.Transparency;
 import java.util.Random;
 
 /**
  *
  * @author sandr
  */
-public class Ball implements Runnable{
+public class Ball extends Thread{
 
     private int radius;
+    private final PaintPanel panel;
     private Color c;
     private Vector speed;
     private Vector position;
 
-    public Ball(Vector v) {
+    public Ball(Vector v, PaintPanel p) {
         Random r = new Random();
         setRadius(20 + r.nextInt(30));
         setColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
-        setSpeed(new Vector(1 + r.nextInt(5), 0));
+        setSpeed(new Vector(0, 1 + r.nextInt(2)));
         setPosition(v);
+        panel = p;
     }
 
     public final int getRadius() {
@@ -61,10 +64,24 @@ public class Ball implements Runnable{
 
     @Override
     public void run() {
-        position.add(speed);
-        try {
-            Thread.sleep(5);
-        } catch (InterruptedException ex) {
+        while((panel.getHeight()) > (position.getY() + getRadius() * 2)){
+            position.add(speed);
+            
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException ex) {
+                
+            }
+        }
+        
+        while(c.getTransparency() != Transparency.BITMASK){
+            c = new Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha() - 15);
+            
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException ex) {
+                
+            }
         }
     }
 }
