@@ -3,6 +3,8 @@ package exercise1;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /*
@@ -16,12 +18,10 @@ import javax.swing.JFrame;
  */
 public class FrameB extends JFrame {
     private PaintPanel p;
-    private boolean isPressed;
 
     public FrameB() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 700);
-        isPressed = false;
         
         p = new PaintPanel();
         p.setDoubleBuffered(true);
@@ -39,8 +39,17 @@ public class FrameB extends JFrame {
             }
         });
         
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                p.stop();
+                super.windowClosing(e);
+            }
+        });
+        
         add(p);
         setVisible(true);
+        p.start();
     }
 
     public static void main(final String[] args) {

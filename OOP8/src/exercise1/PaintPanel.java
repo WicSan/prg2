@@ -17,25 +17,13 @@ import javax.swing.JPanel;
  */
 public class PaintPanel extends JPanel{
     private final LinkedBlockingQueue<Ball> balls;
+    private boolean run;
     
     public PaintPanel(){
         balls = new LinkedBlockingQueue<>();
-        
-        Thread t = new Thread(() -> {
-            while(true){
-                this.repaint();
-                
-                try {
-                    Thread.sleep(15);
-                } catch (InterruptedException ex) {
-
-                }
-            }
-        });
-        t.start();
     }
 
-   @Override
+    @Override
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g;
@@ -60,5 +48,22 @@ public class PaintPanel extends JPanel{
         balls.add(b);
         
         b.start();
+    }
+    
+    public void stop(){
+        run = false;
+    }
+    
+    public void start(){
+        run = true;
+        
+        new Thread(() -> {
+            try {
+                while(run){
+                    this.repaint();
+                    Thread.sleep(15);
+                }
+            } catch (InterruptedException ex) { }
+        }).start();
     }
 }
