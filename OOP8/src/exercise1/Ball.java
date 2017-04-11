@@ -86,7 +86,10 @@ public class Ball extends TimerTask{
     public void run() {
         if(!move()){
             if(!disapear()){
-                alive = false;
+                synchronized (this) {
+                    alive = false;
+                }
+
                 this.cancel();
             }
         }  
