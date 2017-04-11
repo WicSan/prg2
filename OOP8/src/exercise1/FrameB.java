@@ -18,6 +18,7 @@ public class FrameB extends JFrame {
     private final Timer timer;
 
     public FrameB() {
+        super("Ball");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 700);
          
