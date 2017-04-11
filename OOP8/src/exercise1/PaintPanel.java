@@ -31,7 +31,7 @@ public class PaintPanel extends JPanel{
             if(b.isAlive()){
                 Vector v = b.getPosition();
                 g2D.setColor(b.getColor());
-                g2D.fillOval(v.getX(), v.getY(), b.getRadius() * 2, b.getRadius() * 2);
+                g2D.fillRoundRect(v.getX(), v.getY(), b.getRadius() * 2, b.getRadius() * 2, 50, 50);
             } else {
                 balls.remove(b);
             }
