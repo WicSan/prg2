@@ -13,7 +13,6 @@ import java.util.Timer;
  */
 public class PaintPanel extends JPanel{
     private final LinkedBlockingQueue<Ball> balls;
-    //private final ExecutorService executor = Executors.newCachedThreadPool();
     private final Timer timer = new Timer();
     
     public PaintPanel(){
