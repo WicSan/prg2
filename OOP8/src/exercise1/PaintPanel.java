@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
 import javax.swing.JPanel;
+import java.util.Timer;
 
 /**
  *
@@ -12,14 +13,16 @@ import javax.swing.JPanel;
  */
 public class PaintPanel extends JPanel{
     private final LinkedBlockingQueue<Ball> balls;
+    //private final ExecutorService executor = Executors.newCachedThreadPool();
+    private final Timer timer = new Timer();
     
     public PaintPanel(){
         balls = new LinkedBlockingQueue<>();
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
         
         Iterator<Ball> iterator = balls.iterator();
@@ -41,7 +44,8 @@ public class PaintPanel extends JPanel{
         b.setPosition(new Vector(v.getX() - b.getRadius(), v.getY() - b.getRadius()));
         try {
             balls.put(b);
-            b.start();
+            
+            timer.schedule(b, 0, 20);
         } catch (InterruptedException ex) {
         }
     }
