@@ -71,7 +71,7 @@ public class Ball extends TimerTask{
     
     public boolean disapear(){
         if(c.getTransparency() != Transparency.BITMASK){
-            c = new Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha() - 15);
+            c = new Color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha() - 1);
             return true;
         }
         

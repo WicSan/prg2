@@ -48,7 +48,7 @@ public class FrameB extends JFrame {
         
         add(p);
         
-        timer = new Timer(15, (ActionEvent e) -> {
+        timer = new Timer(12, (ActionEvent e) -> {
             p.repaint();
         });
         timer.start();
