@@ -39,7 +39,7 @@ public class PaintPanel extends JPanel{
     }
     
     public void createBall(Vector v){
-        Ball b = new Ball(v, this);
+        Ball b = new Ball(v, this.getHeight());
         b.setPosition(new Vector(v.getX() - b.getRadius(), v.getY() - b.getRadius()));
         try {
             balls.put(b);

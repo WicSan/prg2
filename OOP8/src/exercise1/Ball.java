@@ -10,20 +10,19 @@ import java.util.TimerTask;
  * @author sandr
  */
 public class Ball extends TimerTask{
-    private int radius;
-    private final PaintPanel panel;
+    private int radius, bottom;
     private Color c;
     private Vector speed;
     private Vector position;
     private boolean alive;
 
-    public Ball(Vector v, PaintPanel p) {
+    public Ball(Vector v, int b) {
         Random r = new Random();
         setRadius(20 + r.nextInt(30));
         setColor(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
         setSpeed(new Vector(0, 1 + r.nextInt(10)));
         setPosition(v);
-        panel = p;
+        bottom = b;
         
         alive = true;
     }
@@ -61,7 +60,7 @@ public class Ball extends TimerTask{
     }
     
     public boolean move(){
-        if((panel.getHeight()) > (position.getY() + getRadius() * 2)){
+        if((bottom) > (position.getY() + getRadius() * 2)){
             position.add(speed);
             return true;
         }
