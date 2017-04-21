@@ -27,14 +27,14 @@ public class FrameB extends JFrame {
         p.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                p.createBall(new Vector(e.getX(), e.getY()));
+                new Thread(() -> p.createBall(new Vector(e.getX(), e.getY()))).start();
             }
         });
         
-        p.addMouseListener(new MouseAdapter() {
+        p.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
-                p.createBall(new Vector(e.getX(), e.getY()));
+                new Thread(() ->p.createBall(new Vector(e.getX(), e.getY()))).start();
             }
         });
         
