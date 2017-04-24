@@ -31,6 +31,8 @@ public class FrameB extends JFrame {
             }
         });
         
+        //MouseListener auf dem Panel hinzufügen, da sonst nicht alle Klicks 
+        //richtig gefangen werden.
         p.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e) {
