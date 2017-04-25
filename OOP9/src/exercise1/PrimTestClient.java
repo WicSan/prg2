@@ -17,8 +17,8 @@ import java.net.Socket;
  */
 public class PrimTestClient {
     public static void main(String[] args) throws IOException {
-        int port = 99;
-        String host = "10.155.126.31";
+        int port = Integer.parseInt(args[1]);
+        String host = args[0];
         BufferedReader keyStream = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             try (Socket client = new Socket(host, port)) {
