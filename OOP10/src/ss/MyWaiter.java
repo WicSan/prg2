@@ -20,9 +20,9 @@ public class MyWaiter implements Runnable {
         System.out.println("warten...");
         synchronized (lock) {
             try {
-                wait();
+                lock.wait();
             } catch (InterruptedException ex) {
-            /* handling...*/
+                /* handling...*/
             }
         }
         System.out.println("...aufgewacht");

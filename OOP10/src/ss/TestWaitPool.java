@@ -17,9 +17,11 @@ public class TestWaitPool {
         new Thread(waiter).start();
         try {
             Thread.sleep(1000);
-            lock.notify();
+            synchronized (lock) {
+                lock.notify();
+            }
         } catch (InterruptedException ex) {
-        /* handling...*/
+            /* handling...*/
         }
     }
 }
