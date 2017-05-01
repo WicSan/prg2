@@ -21,7 +21,7 @@ public class FrameB extends JFrame {
         super("Ball");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 700);
-         
+        
         p = new PaintPanel();
         p.setDoubleBuffered(true);
         p.addMouseMotionListener(new MouseAdapter() {

@@ -5,6 +5,7 @@
  */
 package exercise2;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.util.Date;
@@ -33,6 +34,8 @@ public class MyApplet extends JApplet {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+        Font f = new Font("Arial", Font.BOLD, 30);
+        g.setFont(f);
         g.drawString(new Date().toString(), 50, 25);
     }
     // TODO overwrite start(), stop() and destroy() methods
